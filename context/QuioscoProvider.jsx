@@ -80,9 +80,11 @@ const QuioscoProvider = ({children}) => {
   const confirmarOrden = async (e) => {
 
     e.preventDefault()
+    const fecha = Date.now()
+    const fechaFormateada = new Date(fecha)
 
     try {
-      await axios.post('/api/ordenes', {pedido, nombre, total, fecha: Date.now().toString()})
+      await axios.post('/api/ordenes', {pedido, nombre, total, fecha: fechaFormateada.toDateString()})
 
       //Resetear la app
       setCategoriaActual(categorias[0])
